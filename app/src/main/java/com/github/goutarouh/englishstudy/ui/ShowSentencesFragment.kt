@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentencesBinding
-import com.github.goutarouh.englishstudy.ui.component.list.SentenceListAdapter
+import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapter
 
 class ShowSentencesFragment: Fragment() {
 

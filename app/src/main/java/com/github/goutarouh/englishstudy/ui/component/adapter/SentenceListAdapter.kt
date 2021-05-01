@@ -1,4 +1,4 @@
-package com.github.goutarouh.englishstudy.ui.component.list
+package com.github.goutarouh.englishstudy.ui.component.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
