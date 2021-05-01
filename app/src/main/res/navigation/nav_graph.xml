@@ -6,10 +6,10 @@
 
     <fragment
         android:id="@+id/bottom_navigation_check"
-        android:name="com.github.goutarouh.englishstudy.ui.CheckFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.CheckSentencesFragment"
         android:label="CheckFragment" />
     <fragment
         android:id="@+id/bottom_navigation_list"
-        android:name="com.github.goutarouh.englishstudy.ui.ListFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.ShowSentencesFragment"
         android:label="ListFragment" />
 </navigation>

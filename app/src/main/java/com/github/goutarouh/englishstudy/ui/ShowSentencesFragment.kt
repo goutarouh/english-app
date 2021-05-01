@@ -5,19 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.github.goutarouh.englishstudy.databinding.FragmentListBinding
+import com.github.goutarouh.englishstudy.databinding.FragmentShowSentencesBinding
 import com.github.goutarouh.englishstudy.ui.component.list.SentenceListAdapter
 
-class ListFragment: Fragment() {
+class ShowSentencesFragment: Fragment() {
 
-    private lateinit var binding: FragmentListBinding
+    private lateinit var binding: FragmentShowSentencesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentListBinding.inflate(inflater, container, false)
+        binding = FragmentShowSentencesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
