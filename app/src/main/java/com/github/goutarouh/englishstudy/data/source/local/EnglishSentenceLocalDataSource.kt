@@ -1,5 +1,7 @@
 package com.github.goutarouh.englishstudy.data.source.local
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.data.Result
 import com.github.goutarouh.englishstudy.data.Result.Success
@@ -13,10 +15,16 @@ import java.lang.Exception
 /**
  * Concrete implementation of a data source as a db.
  */
-class EnglishSentenceLocalDataSource (
-    private val englishSentenceDao: EnglishSentenceDao,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+class EnglishSentenceLocalDataSource internal constructor(
+    val englishSentenceDao: EnglishSentenceDao,
+    val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): EnglishSentencesDataSource {
+
+    override fun observeEnglishSentences(): LiveData<Result<List<EnglishSentence>>> {
+        return englishSentenceDao.observeEnglishSentences().map {
+            Success(it)
+        }
+    }
 
     override suspend fun getEnglishSentences(): Result<List<EnglishSentence>> = withContext(ioDispatcher) {
         return@withContext try {

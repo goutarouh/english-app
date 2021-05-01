@@ -1,5 +1,6 @@
 package com.github.goutarouh.englishstudy.data.source.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -8,6 +9,9 @@ import com.github.goutarouh.englishstudy.data.EnglishSentence
 
 @Dao
 interface EnglishSentenceDao {
+
+    @Query("SELECT * FROM EnglishSentences")
+    fun observeEnglishSentences(): LiveData<List<EnglishSentence>>
 
     @Query("SELECT * FROM EnglishSentences")
     suspend fun getEnglishSentences(): List<EnglishSentence>
