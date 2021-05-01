@@ -2,9 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/checkFragment">
+    app:startDestination="@id/bottom_navigation_check">
+
     <fragment
-        android:id="@+id/checkFragment"
+        android:id="@+id/bottom_navigation_check"
         android:name="com.github.goutarouh.englishstudy.ui.CheckFragment"
         android:label="CheckFragment" />
+    <fragment
+        android:id="@+id/bottom_navigation_list"
+        android:name="com.github.goutarouh.englishstudy.ui.ListFragment"
+        android:label="ListFragment" />
 </navigation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_navigation_check"
+        android:enabled="true"
+        android:icon="@drawable/bottom_ic_check"
+        android:title="@string/bottom_navigation_check_title" />
+
+    <item
+        android:id="@+id/bottom_navigation_list"
+        android:enabled="true"
+        android:icon="@drawable/bottom_ic_list"
+        android:title="@string/bottom_navigation_list_title" />
+
+</menu>
