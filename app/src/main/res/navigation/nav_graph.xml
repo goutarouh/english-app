@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/bottom_navigation_check"
-        android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesStartFragment"
         android:label="CheckFragment" />
     <fragment
         android:id="@+id/bottom_navigation_list"
