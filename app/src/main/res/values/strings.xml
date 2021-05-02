@@ -7,4 +7,11 @@
 
     <string name="content_description">no image</string>
 
+    <!-- add edit english sentence dialog -->
+    <string name="english_sentence_hint">english sentence</string>
+    <string name="japanese_sentence_hint">japanese sentence</string>
+    <string name="description_hint">description</string>
+    <string name="cancel_save_sentence">cancel</string>
+    <string name="do_save_sentence">save</string>
+
 </resources>

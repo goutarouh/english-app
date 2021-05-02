@@ -41,9 +41,16 @@ class ShowSentenceViewModel @Inject constructor(
         _forceUpdate.value = forceUpdate
     }
 
-    fun addEnglishSentence() {
+    /**
+     * 英文を保存する
+     *
+     * @param engSentence 英文
+     * @param japSentence 訳
+     * @param description 説明
+     */
+    fun saveEnglishSentence(engSentence: String, japSentence:String, description: String) {
         viewModelScope.launch {
-            val englishSentence = EnglishSentence(englishSentence = "good evening", registeredDate = Date())
+            val englishSentence = EnglishSentence(engSentence, japSentence, description, Date())
             englishSentenceLocalDataSource.saveEnglishSentences(englishSentence)
         }
     }

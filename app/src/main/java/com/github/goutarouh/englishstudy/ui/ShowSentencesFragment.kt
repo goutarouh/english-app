@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentencesBinding
 import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapter
 import com.github.goutarouh.englishstudy.viewmodel.ShowSentenceViewModel
@@ -49,7 +51,7 @@ class ShowSentencesFragment: Fragment() {
 
     private fun setupFab() {
         binding.addEnglishSentence.setOnClickListener {
-            viewModel.addEnglishSentence()
+            findNavController().navigate(R.id.action_bottom_navigation_list_to_addEditEnglishSentenceDialogFragment1)
         }
     }
 }
