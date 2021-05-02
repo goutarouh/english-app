@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import java.util.*
 
 /**
  * Concrete implementation of a data source as a db.
@@ -34,16 +35,14 @@ class EnglishSentenceLocalDataSource internal constructor(
         }
     }
 
-    override suspend fun getEnglishSentenceById(id: String) = withContext(ioDispatcher) {
-        try {
-            val englishSentence = englishSentenceDao.getEnglishSentenceById(id)
-            if (englishSentence != null) {
-                return@withContext Success(englishSentence)
-            } else {
-                return@withContext Error(Exception("englishSentence not found!"))
-            }
+    override suspend fun getEnglishSentencesBetweenRegisteredDates(
+        from: Date,
+        to: Date
+    ) = withContext(ioDispatcher) {
+        return@withContext try {
+            Success(englishSentenceDao.getEnglishSentencesRegisteredBetweenDates(from, to))
         } catch (e: Exception) {
-            return@withContext Error(e)
+            Error(e)
         }
     }
 

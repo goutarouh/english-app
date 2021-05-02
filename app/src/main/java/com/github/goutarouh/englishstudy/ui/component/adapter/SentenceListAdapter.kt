@@ -23,7 +23,7 @@ class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSen
     class ViewHolder(val binding: SentenceItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EnglishSentence) {
-            binding.sentence.text = item.sentence
+            binding.sentence.text = item.englishSentence
         }
 
         companion object {

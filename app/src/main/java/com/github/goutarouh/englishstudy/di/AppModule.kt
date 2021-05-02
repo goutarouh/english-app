@@ -36,7 +36,7 @@ internal object AppModule {
         return Room.databaseBuilder(
             context.applicationContext,
             EnglishSentenceDatabase::class.java,
-            "EnglishSentence.db"
+            "EnglishStudy.db"
         ).build()
     }
 

@@ -15,6 +15,7 @@ import org.junit.runner.RunWith
 import org.assertj.core.api.Assertions.*
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.util.*
 
 @RunWith(RobolectricTestRunner::class)
 @Config(maxSdk = Build.VERSION_CODES.P, minSdk = Build.VERSION_CODES.O)
@@ -34,16 +35,30 @@ class EnglishSentenceLocalDataSourceTest {
         localDataSource = EnglishSentenceLocalDataSource(database.englishSentenceDao())
     }
 
+    /**
+     * 日付の絞り込みが正しくできているかどうか
+     */
     @Test
-    fun saveEnglishSentence_retrieveEnglishSentence() = runBlocking {
-        val englishSentence = EnglishSentence("1", "hello", "20211003")
-        localDataSource.saveEnglishSentences(englishSentence)
+    fun saveEnglishSentences_checkDateOfRegisteredSentences() = runBlocking {
+        val calendar = Calendar.getInstance()
+        repeat(10) {
+            localDataSource.saveEnglishSentences(EnglishSentence(registeredDate = calendar.apply {
+                set(2021, 4, it+1)
+            }.time))
+        }
 
-        val result = localDataSource.getEnglishSentenceById(englishSentence.id)
-        assertThat(result.succeeded).isTrue
+        val from = calendar.apply {
+            set(2021, 4, 2)
+        }.time
+        val to = calendar.apply {
+            set(2021, 4, 4)
+        }.time
+
+        val result = localDataSource.getEnglishSentencesBetweenRegisteredDates(from, to)
+        assertThat(result.succeeded)
         result as Result.Success
-        assertThat(result.data.sentence).isEqualTo(englishSentence.sentence)
-        assertThat(result.data.registeredDate).isEqualTo(englishSentence.registeredDate)
+        println(result.data)
+        assertThat(result.data).hasSize(3)
         return@runBlocking
     }
 
