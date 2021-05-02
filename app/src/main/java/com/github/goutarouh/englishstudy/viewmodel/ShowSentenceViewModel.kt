@@ -6,6 +6,7 @@ import com.github.goutarouh.englishstudy.data.Result
 import com.github.goutarouh.englishstudy.data.source.EnglishSentencesDataSource
 import com.github.goutarouh.englishstudy.data.succeeded
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,6 +38,13 @@ class ShowSentenceViewModel @Inject constructor(
 
     private fun loadEnglishSentences(forceUpdate: Boolean) {
         _forceUpdate.value = forceUpdate
+    }
+
+    fun addEnglishSentence() {
+        viewModelScope.launch {
+            val englishSentence = EnglishSentence("2", "good morning", "20210502")
+            englishSentenceLocalDataSource.saveEnglishSentences(englishSentence)
+        }
     }
 
 }

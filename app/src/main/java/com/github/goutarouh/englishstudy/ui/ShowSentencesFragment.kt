@@ -1,7 +1,6 @@
 package com.github.goutarouh.englishstudy.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,17 +32,24 @@ class ShowSentencesFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.items.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
         setupListAdapter()
+        setupFab()
     }
 
     private fun setupListAdapter() {
-        adapter = SentenceListAdapter(emptyList())
+        adapter = SentenceListAdapter()
         binding.recyclerView.apply {
             this.adapter = this@ShowSentencesFragment.adapter
         }
+    }
 
-        viewModel.items.observe(viewLifecycleOwner) {
-            Log.i(this::class.java.name, "$it")
+    private fun setupFab() {
+        binding.addEnglishSentence.setOnClickListener {
+            viewModel.addEnglishSentence()
         }
     }
 }
