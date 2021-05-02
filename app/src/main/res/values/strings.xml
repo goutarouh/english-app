@@ -14,4 +14,8 @@
     <string name="cancel_save_sentence">cancel</string>
     <string name="do_save_sentence">save</string>
 
+
+    <!-- check -->
+    <string name="check_start_button">check</string>
+
 </resources>

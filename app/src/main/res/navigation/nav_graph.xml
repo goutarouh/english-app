@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/bottom_navigation_check"
-        android:name="com.github.goutarouh.englishstudy.ui.CheckSentencesFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesFragment"
         android:label="CheckFragment" />
     <fragment
         android:id="@+id/bottom_navigation_list"
-        android:name="com.github.goutarouh.englishstudy.ui.ShowSentencesFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.ShowSentencesFragment"
         android:label="ListFragment" >
         <action
             android:id="@+id/action_bottom_navigation_list_to_addEditEnglishSentenceDialogFragment1"

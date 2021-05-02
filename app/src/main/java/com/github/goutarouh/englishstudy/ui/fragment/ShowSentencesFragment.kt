@@ -1,4 +1,4 @@
-package com.github.goutarouh.englishstudy.ui
+package com.github.goutarouh.englishstudy.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
