@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/bottom_navigation_check"
         android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesStartFragment"
-        android:label="CheckFragment" />
+        android:label="CheckFragment" >
+        <action
+            android:id="@+id/action_bottom_navigation_check_to_checkSentencesFragment"
+            app:destination="@id/checkSentencesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bottom_navigation_list"
         android:name="com.github.goutarouh.englishstudy.ui.fragment.ShowSentencesFragment"
@@ -25,5 +29,21 @@
             android:id="@+id/action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list"
             app:destination="@id/bottom_navigation_list" />
     </dialog>
+    <fragment
+        android:id="@+id/checkSentencesEndFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesEndFragment"
+        android:label="CheckSentencesEndFragment" >
+        <action
+            android:id="@+id/action_checkSentencesEndFragment_to_bottom_navigation_check"
+            app:destination="@id/bottom_navigation_check" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkSentencesFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.CheckSentencesFragment"
+        android:label="CheckSentencesFragment" >
+        <action
+            android:id="@+id/action_checkSentencesFragment_to_checkSentencesEndFragment"
+            app:destination="@id/checkSentencesEndFragment" />
+    </fragment>
 
 </navigation>

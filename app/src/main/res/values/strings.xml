@@ -16,6 +16,8 @@
 
 
     <!-- check -->
-    <string name="check_start_button">check</string>
+    <string name="check_start_button">start</string>
+    <string name="check_next_button">next</string>
+    <string name="check_end_button">end</string>
 
 </resources>
