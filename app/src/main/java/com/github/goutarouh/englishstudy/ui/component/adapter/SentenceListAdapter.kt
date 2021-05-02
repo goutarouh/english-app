@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapter.ViewHolder
 import com.github.goutarouh.englishstudy.databinding.SentenceItemBinding
+import com.github.goutarouh.englishstudy.util.TimeCalculator
 
 class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSentenceDiffCallback()) {
 
@@ -24,6 +25,7 @@ class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSen
 
         fun bind(item: EnglishSentence) {
             binding.sentence.text = item.englishSentence
+            binding.whenPosted.text = TimeCalculator.dateToWhenPosted(item.registeredDate)
         }
 
         companion object {
