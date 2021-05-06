@@ -11,10 +11,12 @@ import androidx.navigation.fragment.findNavController
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentCheckSentencesEndBinding
 import com.github.goutarouh.englishstudy.viewmodel.CheckSentenceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * 問題後のフラグメント
  */
+@AndroidEntryPoint
 class CheckSentencesEndFragment: Fragment() {
 
     lateinit var binding: FragmentCheckSentencesEndBinding
