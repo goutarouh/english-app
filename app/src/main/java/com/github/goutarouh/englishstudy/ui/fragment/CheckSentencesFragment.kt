@@ -44,16 +44,13 @@ class CheckSentencesFragment: Fragment() {
             viewModel.checkFlow.collect {
                 when (it) {
                     is Start -> {
-                        Log.i("hasegawa", "start")
                         binding.checkJapaneseSentence.text = "${it.startTime}"
                     }
                     is Check -> {
-                        Log.i("hasegawa", "check")
                         binding.checkJapaneseSentence.text = it.englishSentence.japaneseSentence
                     }
                     is End -> {
                         // 問題終了のフラグメントへ
-                        Log.i("hasegawa", "end")
                         findNavController().navigate(R.id.action_checkSentencesFragment_to_checkSentencesEndFragment)
                     }
                 }
