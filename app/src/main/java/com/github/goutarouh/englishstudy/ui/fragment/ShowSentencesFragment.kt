@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentencesBinding
 import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapter
@@ -44,7 +46,9 @@ class ShowSentencesFragment: Fragment() {
 
     private fun setupListAdapter() {
         adapter = SentenceListAdapter()
+        val divider = DividerItemDecoration(context, LinearLayoutManager(context).orientation)
         binding.recyclerView.apply {
+            this.addItemDecoration(divider)
             this.adapter = this@ShowSentencesFragment.adapter
         }
     }

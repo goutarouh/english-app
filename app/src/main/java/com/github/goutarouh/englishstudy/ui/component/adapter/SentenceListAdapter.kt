@@ -25,7 +25,6 @@ class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSen
 
         fun bind(item: EnglishSentence) {
             binding.sentence.text = item.englishSentence
-            binding.whenPosted.text = TimeCalculator.dateToWhenPosted(item.registeredDate)
         }
 
         companion object {
