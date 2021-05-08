@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_bottom_navigation_list_to_addEditEnglishSentenceDialogFragment1"
             app:destination="@id/addEditEnglishSentenceDialogFragment" />
+        <action
+            android:id="@+id/action_bottom_navigation_list_to_showSentenceDetailFragment"
+            app:destination="@id/showSentenceDetailFragment" />
     </fragment>
 
     <dialog
@@ -45,5 +48,9 @@
             android:id="@+id/action_checkSentencesFragment_to_checkSentencesEndFragment"
             app:destination="@id/checkSentencesEndFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/showSentenceDetailFragment"
+        android:name="com.github.goutarouh.englishstudy.ui.fragment.ShowSentenceDetailFragment"
+        android:label="ShowSentenceDetailFragment" />
 
 </navigation>

@@ -2,9 +2,11 @@ package com.github.goutarouh.englishstudy.ui.component.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapter.ViewHolder
 import com.github.goutarouh.englishstudy.databinding.SentenceItemBinding
@@ -25,6 +27,10 @@ class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSen
 
         fun bind(item: EnglishSentence) {
             binding.sentence.text = item.englishSentence
+            binding.sentenceItem.setOnClickListener {
+                val navController = Navigation.findNavController(binding.root)
+                navController.navigate(R.id.action_bottom_navigation_list_to_showSentenceDetailFragment)
+            }
         }
 
         companion object {
