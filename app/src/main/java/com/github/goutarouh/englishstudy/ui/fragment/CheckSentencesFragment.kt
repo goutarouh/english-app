@@ -12,7 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentCheckSentencesBinding
 import com.github.goutarouh.englishstudy.ui.model.CheckSentenceScreenUpdateType.Start
-import com.github.goutarouh.englishstudy.ui.model.CheckSentenceScreenUpdateType.Check
+import com.github.goutarouh.englishstudy.ui.model.CheckSentenceScreenUpdateType.CheckDisplay
+import com.github.goutarouh.englishstudy.ui.model.CheckSentenceScreenUpdateType.AnswerDisplay
 import com.github.goutarouh.englishstudy.ui.model.CheckSentenceScreenUpdateType.End
 import com.github.goutarouh.englishstudy.viewmodel.CheckSentenceViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,13 +42,17 @@ class CheckSentencesFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launchWhenResumed {
-            viewModel.checkFlow.collect {
+            viewModel.createCheckFlow(2000, 1000).collect {
                 when (it) {
                     is Start -> {
-                        binding.checkJapaneseSentence.text = "${it.startTime}"
                     }
-                    is Check -> {
-                        binding.checkJapaneseSentence.text = it.englishSentence.japaneseSentence
+                    is CheckDisplay -> {
+                        binding.answerEnglishSentence.visibility = View.INVISIBLE
+                        binding.checkJapaneseSentence.text = it.japaneseSentence
+                    }
+                    is AnswerDisplay -> {
+                        binding.answerEnglishSentence.visibility = View.VISIBLE
+                        binding.answerEnglishSentence.text = it.englishSentence
                     }
                     is End -> {
                         // 問題終了のフラグメントへ
