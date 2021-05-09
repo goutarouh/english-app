@@ -51,6 +51,10 @@
     <fragment
         android:id="@+id/showSentenceDetailFragment"
         android:name="com.github.goutarouh.englishstudy.ui.fragment.ShowSentenceDetailFragment"
-        android:label="ShowSentenceDetailFragment" />
+        android:label="ShowSentenceDetailFragment" >
+        <action
+            android:id="@+id/action_showSentenceDetailFragment_to_bottom_navigation_list"
+            app:destination="@id/bottom_navigation_list" />
+    </fragment>
 
 </navigation>
