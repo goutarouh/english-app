@@ -27,6 +27,12 @@ class EnglishSentenceLocalDataSource internal constructor(
         }
     }
 
+    override fun observeEnglishSentenceById(id: String): LiveData<Result<EnglishSentence>> {
+        return englishSentenceDao.observeEnglishSentenceById(id).map {
+            Success(it)
+        }
+    }
+
     override suspend fun getEnglishSentences(): Result<List<EnglishSentence>> = withContext(ioDispatcher) {
         return@withContext try {
             Success(englishSentenceDao.getEnglishSentences())

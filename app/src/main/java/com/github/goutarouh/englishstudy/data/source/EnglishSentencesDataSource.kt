@@ -12,6 +12,11 @@ interface EnglishSentencesDataSource {
 
     fun observeEnglishSentences(): LiveData<Result<List<EnglishSentence>>>
 
+    /**
+     * Idから英文を一個取得する
+     */
+    fun observeEnglishSentenceById(id: String): LiveData<Result<EnglishSentence>>
+
     suspend fun getEnglishSentences(): Result<List<EnglishSentence>>
 
     suspend fun getEnglishSentencesBetweenRegisteredDates(from: Date, to: Date): Result<List<EnglishSentence>>
