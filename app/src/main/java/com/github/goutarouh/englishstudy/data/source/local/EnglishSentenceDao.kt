@@ -1,10 +1,7 @@
 package com.github.goutarouh.englishstudy.data.source.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import java.util.*
 
@@ -22,5 +19,8 @@ interface EnglishSentenceDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEnglishSentences(englishSentence: EnglishSentence)
+
+    @Delete
+    suspend fun deleteEnglishSentences(englishSentence: EnglishSentence)
 
 }

@@ -18,4 +18,9 @@ interface EnglishSentencesDataSource {
 
     suspend fun saveEnglishSentences(englishSentence: EnglishSentence)
 
+    /**
+     * 英文を削除する。
+     */
+    suspend fun deleteEnglishSentences(englishSentence: EnglishSentence)
+
 }

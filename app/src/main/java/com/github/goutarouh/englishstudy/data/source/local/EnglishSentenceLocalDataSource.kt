@@ -50,4 +50,11 @@ class EnglishSentenceLocalDataSource internal constructor(
         englishSentenceDao.insertEnglishSentences(englishSentence)
     }
 
+    /**
+     * 英文を削除する。
+     */
+    override suspend fun deleteEnglishSentences(englishSentence: EnglishSentence) {
+        englishSentenceDao.deleteEnglishSentences(englishSentence)
+    }
+
 }
