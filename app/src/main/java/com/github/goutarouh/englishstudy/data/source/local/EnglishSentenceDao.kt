@@ -12,7 +12,7 @@ interface EnglishSentenceDao {
     fun observeEnglishSentences(): LiveData<List<EnglishSentence>>
 
     @Query("SELECT * FROM english_sentences WHERE id = :id")
-    fun observeEnglishSentenceById(id: String): LiveData<EnglishSentence>
+    fun observeEnglishSentenceById(id: Int): LiveData<EnglishSentence>
 
     @Query("SELECT * FROM english_sentences")
     suspend fun getEnglishSentences(): List<EnglishSentence>

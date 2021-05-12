@@ -20,4 +20,11 @@
     <string name="check_next_button">next</string>
     <string name="check_end_button">end</string>
 
+    <!--  detail  -->
+    <string name="detail_english">English</string>
+    <string name="detail_japanese">Japanese</string>
+    <string name="detail_description">description</string>
+    <string name="detail_date">date</string>
+
+
 </resources>

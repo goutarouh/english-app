@@ -27,8 +27,8 @@ class EnglishSentenceLocalDataSource internal constructor(
         }
     }
 
-    override fun observeEnglishSentenceById(id: String): LiveData<Result<EnglishSentence>> {
-        return englishSentenceDao.observeEnglishSentenceById(id).map {
+    override fun observeEnglishSentenceById(sentenceId: Int): LiveData<Result<EnglishSentence>> {
+        return englishSentenceDao.observeEnglishSentenceById(sentenceId).map {
             Success(it)
         }
     }

@@ -5,17 +5,25 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.goutarouh.englishstudy.R
+import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentenceDetailBinding
+import com.github.goutarouh.englishstudy.viewmodel.ShowSentenceDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import kotlin.math.abs
 
+@AndroidEntryPoint
 class ShowSentenceDetailFragment: Fragment() {
 
     lateinit var binding: FragmentShowSentenceDetailBinding
 
-    val args: ShowSentenceDetailFragmentArgs by navArgs()
+    private val args: ShowSentenceDetailFragmentArgs by navArgs()
+
+    private val viewModel: ShowSentenceDetailViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShowSentenceDetailBinding.inflate(inflater, container, false)
@@ -26,10 +34,33 @@ class ShowSentenceDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.item.observe(viewLifecycleOwner) {
+            initScreen(it)
+        }
 
+        viewModel.start(args.englishSentenceId)
+
+        // 英文を削除する。
+        binding.deleteSentence.setOnClickListener {
+            // 英文を削除する。
+        }
+
+        // 右スワイプで英文一覧に戻る
         binding.detailFragment.setOnTouchListener { _, event ->
             backSHowSentencesFragmentGesture.onTouchEvent(event)
         }
+    }
+
+    private fun initScreen(englishSentence: EnglishSentence) {
+        binding.registeredEnglish.text = englishSentence.englishSentence
+        binding.registeredJapanese.text = englishSentence.japaneseSentence
+        binding.registeredDescription.text = englishSentence.description
+
+        val calender = Calendar.getInstance().apply {
+            time = englishSentence.registeredDate
+        }
+
+        binding.registeredDate.updateDate(calender.get(Calendar.YEAR), calender.get(Calendar.MONTH), calender.get(Calendar.DAY_OF_MONTH))
     }
 
 

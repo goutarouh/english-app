@@ -15,7 +15,7 @@ interface EnglishSentencesDataSource {
     /**
      * Idから英文を一個取得する
      */
-    fun observeEnglishSentenceById(id: String): LiveData<Result<EnglishSentence>>
+    fun observeEnglishSentenceById(id: Int): LiveData<Result<EnglishSentence>>
 
     suspend fun getEnglishSentences(): Result<List<EnglishSentence>>
 
