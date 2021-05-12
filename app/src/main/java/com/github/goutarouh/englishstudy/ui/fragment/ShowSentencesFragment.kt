@@ -45,7 +45,7 @@ class ShowSentencesFragment: Fragment() {
     }
 
     private fun setupListAdapter() {
-        adapter = SentenceListAdapter()
+        adapter = SentenceListAdapter(createSentenceClickListener())
         val divider = DividerItemDecoration(context, LinearLayoutManager(context).orientation)
         binding.recyclerView.apply {
             this.addItemDecoration(divider)
@@ -56,6 +56,15 @@ class ShowSentencesFragment: Fragment() {
     private fun setupFab() {
         binding.addEnglishSentence.setOnClickListener {
             findNavController().navigate(R.id.action_bottom_navigation_list_to_addEditEnglishSentenceDialogFragment1)
+        }
+    }
+
+    private fun createSentenceClickListener(): (sentenceId: Int) -> View.OnClickListener {
+        return  { sentenceId ->
+            View.OnClickListener {
+                val action = ShowSentencesFragmentDirections.actionBottomNavigationListToShowSentenceDetailFragment(sentenceId)
+                findNavController().navigate(action)
+            }
         }
     }
 }

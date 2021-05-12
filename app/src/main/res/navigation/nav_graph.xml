@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_showSentenceDetailFragment_to_bottom_navigation_list"
             app:destination="@id/bottom_navigation_list" />
+        <argument
+            android:name="englishSentenceId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

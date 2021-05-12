@@ -6,6 +6,7 @@ import android.view.*
 import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentenceDetailBinding
 import kotlin.math.abs
@@ -13,6 +14,8 @@ import kotlin.math.abs
 class ShowSentenceDetailFragment: Fragment() {
 
     lateinit var binding: FragmentShowSentenceDetailBinding
+
+    val args: ShowSentenceDetailFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShowSentenceDetailBinding.inflate(inflater, container, false)

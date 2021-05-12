@@ -1,6 +1,7 @@
 package com.github.goutarouh.englishstudy.ui.component.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
@@ -12,10 +13,10 @@ import com.github.goutarouh.englishstudy.ui.component.adapter.SentenceListAdapte
 import com.github.goutarouh.englishstudy.databinding.SentenceItemBinding
 import com.github.goutarouh.englishstudy.util.TimeCalculator
 
-class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSentenceDiffCallback()) {
+class SentenceListAdapter(private val sentenceClickListener: (Int) -> View.OnClickListener): ListAdapter<EnglishSentence, ViewHolder>(EnglishSentenceDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(parent, sentenceClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -23,21 +24,18 @@ class SentenceListAdapter(): ListAdapter<EnglishSentence, ViewHolder>(EnglishSen
         holder.bind(item)
     }
 
-    class ViewHolder(val binding: SentenceItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: SentenceItemBinding, private val sentenceClickListener: (Int) -> View.OnClickListener): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EnglishSentence) {
             binding.sentence.text = item.englishSentence
-            binding.sentenceItem.setOnClickListener {
-                val navController = Navigation.findNavController(binding.root)
-                navController.navigate(R.id.action_bottom_navigation_list_to_showSentenceDetailFragment)
-            }
+            binding.sentenceItem.setOnClickListener(sentenceClickListener(item.id))
         }
 
         companion object {
-            fun from(parent: ViewGroup): ViewHolder {
+            fun from(parent: ViewGroup, sentenceClickListener: (Int) -> View.OnClickListener): ViewHolder {
                 val layoutInt = LayoutInflater.from(parent.context)
                 val binding = SentenceItemBinding.inflate(layoutInt, parent, false)
-                return ViewHolder(binding)
+                return ViewHolder(binding, sentenceClickListener)
             }
         }
     }
