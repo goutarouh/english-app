@@ -31,6 +31,13 @@
         <action
             android:id="@+id/action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list"
             app:destination="@id/bottom_navigation_list" />
+        <argument
+            android:name="sentenceId"
+            app:argType="string"
+            app:nullable="true"/>
+        <action
+            android:id="@+id/action_addEditEnglishSentenceDialogFragment_to_showSentenceDetailFragment"
+            app:destination="@id/showSentenceDetailFragment" />
     </dialog>
     <fragment
         android:id="@+id/checkSentencesEndFragment"
@@ -58,6 +65,9 @@
         <argument
             android:name="englishSentenceId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_showSentenceDetailFragment_to_addEditEnglishSentenceDialogFragment"
+            app:destination="@id/addEditEnglishSentenceDialogFragment" />
     </fragment>
 
 </navigation>

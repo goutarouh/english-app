@@ -55,7 +55,8 @@ class ShowSentencesFragment: Fragment() {
 
     private fun setupFab() {
         binding.addEnglishSentence.setOnClickListener {
-            findNavController().navigate(R.id.action_bottom_navigation_list_to_addEditEnglishSentenceDialogFragment1)
+            val action = ShowSentencesFragmentDirections.actionBottomNavigationListToAddEditEnglishSentenceDialogFragment1(null)
+            findNavController().navigate(action)
         }
     }
 

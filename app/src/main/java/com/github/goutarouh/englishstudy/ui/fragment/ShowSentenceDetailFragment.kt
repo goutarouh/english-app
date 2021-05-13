@@ -45,6 +45,12 @@ class ShowSentenceDetailFragment: Fragment() {
             // 英文を削除する。
         }
 
+        binding.editSentence.setOnClickListener {
+            val action = ShowSentenceDetailFragmentDirections
+                .actionShowSentenceDetailFragmentToAddEditEnglishSentenceDialogFragment("${args.englishSentenceId}")
+            findNavController().navigate(action)
+        }
+
         // 右スワイプで英文一覧に戻る
         binding.detailFragment.setOnTouchListener { _, event ->
             backSHowSentencesFragmentGesture.onTouchEvent(event)

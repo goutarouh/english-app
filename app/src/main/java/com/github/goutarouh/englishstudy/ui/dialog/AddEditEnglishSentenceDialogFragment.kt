@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.databinding.FragmentAddEditSentenceBinding
+import com.github.goutarouh.englishstudy.viewmodel.AddEditEnglishSentenceViewModel
 import com.github.goutarouh.englishstudy.viewmodel.ShowSentenceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddEditEnglishSentenceDialogFragment: DialogFragment() {
 
-    private val viewModel: ShowSentenceViewModel by viewModels()
+    private val viewModel: AddEditEnglishSentenceViewModel by viewModels()
+
+    private val args: AddEditEnglishSentenceDialogFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentAddEditSentenceBinding
 
@@ -49,18 +53,33 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
             isCancelable = false
         }
 
+        viewModel.start(args.sentenceId)
+
+        viewModel.item.observe(viewLifecycleOwner) {
+            binding.editEnglishSentence.setText(it.englishSentence)
+            binding.editJapaneseSentence.setText(it.japaneseSentence)
+            binding.editDescription.setText(it.description)
+        }
+
 
         binding.cancelSaveSentence.setOnClickListener {
-            findNavController().navigate(R.id.action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list)
+            val action = if (args.sentenceId == null) {
+                AddEditEnglishSentenceDialogFragmentDirections.actionAddEditEnglishSentenceDialogFragmentToBottomNavigationList()
+            } else {
+                val sentenceId = args.sentenceId!!.toInt()
+                AddEditEnglishSentenceDialogFragmentDirections
+                    .actionAddEditEnglishSentenceDialogFragmentToShowSentenceDetailFragment(sentenceId)
+            }
+            findNavController().navigate(action)
         }
 
         binding.doSaveSentence.setOnClickListener {
-            viewModel.saveEnglishSentence(
-                binding.editEnglishSentence.text.toString(),
-                binding.editJapaneseSentence.text.toString(),
-                binding.editDescription.text.toString()
-            )
-            findNavController().navigate(R.id.action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list)
+//            viewModel.saveEnglishSentence(
+//                binding.editEnglishSentence.text.toString(),
+//                binding.editJapaneseSentence.text.toString(),
+//                binding.editDescription.text.toString()
+//            )
+//            findNavController().navigate(R.id.action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list)
         }
     }
 }
