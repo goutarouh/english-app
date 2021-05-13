@@ -12,13 +12,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp">
 
             <TextView
                 android:id="@+id/english"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_english"
+                android:textSize="@dimen/english_sentence_detail_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
+                android:layout_marginTop="@dimen/english_sentence_detail_string_margin_top"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +30,8 @@
                 android:id="@+id/registered_english"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/english_sentence_detail_registered_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/english" />
 
@@ -34,6 +40,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_japanese"
+                android:textSize="@dimen/english_sentence_detail_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
+                android:layout_marginTop="@dimen/english_sentence_detail_string_margin_top"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registered_english" />
 
@@ -41,6 +50,8 @@
                 android:id="@+id/registered_japanese"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/english_sentence_detail_registered_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/japanese" />
 
@@ -49,6 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_description"
+                android:textSize="@dimen/english_sentence_detail_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
+                android:layout_marginTop="@dimen/english_sentence_detail_string_margin_top"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registered_japanese"/>
 
@@ -56,6 +70,8 @@
                 android:id="@+id/registered_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/english_sentence_detail_registered_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description" />
 
@@ -64,24 +80,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/detail_date"
+                android:textSize="@dimen/english_sentence_detail_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
+                android:layout_marginTop="@dimen/english_sentence_detail_string_margin_top"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registered_description" />
 
-            <DatePicker
+            <TextView
                 android:id="@+id/registered_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/english_sentence_detail_registered_string_size"
+                android:layout_marginStart="@dimen/english_sentence_detail_string_margin_start"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/date" />
 
+
+            <ImageView
+                android:id="@+id/edit_sentence"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_edit_sentence"
+                android:layout_marginTop="@dimen/english_sentence_detail_delete_or_edit_icon_margin_top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/delete_sentence"
+                app:layout_constraintTop_toBottomOf="@id/registered_date"
+                android:contentDescription="@string/content_description" />
+
             <ImageView
                 android:id="@+id/delete_sentence"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_delete_sentence"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/english_sentence_detail_delete_or_edit_icon_margin_top"
+                app:layout_constraintStart_toEndOf="@id/edit_sentence"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registered_date"
                 android:contentDescription="@string/content_description"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

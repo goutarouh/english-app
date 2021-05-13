@@ -11,9 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.github.goutarouh.englishstudy.R
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.databinding.FragmentShowSentenceDetailBinding
+import com.github.goutarouh.englishstudy.util.TimeCalculator
 import com.github.goutarouh.englishstudy.viewmodel.ShowSentenceDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 import kotlin.math.abs
 
 @AndroidEntryPoint
@@ -55,12 +55,7 @@ class ShowSentenceDetailFragment: Fragment() {
         binding.registeredEnglish.text = englishSentence.englishSentence
         binding.registeredJapanese.text = englishSentence.japaneseSentence
         binding.registeredDescription.text = englishSentence.description
-
-        val calender = Calendar.getInstance().apply {
-            time = englishSentence.registeredDate
-        }
-
-        binding.registeredDate.updateDate(calender.get(Calendar.YEAR), calender.get(Calendar.MONTH), calender.get(Calendar.DAY_OF_MONTH))
+        binding.registeredDate.text = TimeCalculator.dateToString(englishSentence.registeredDate)
     }
 
 

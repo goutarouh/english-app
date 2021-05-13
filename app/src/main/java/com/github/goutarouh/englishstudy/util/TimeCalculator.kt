@@ -35,4 +35,20 @@ object TimeCalculator {
         }
     }
 
+    /**
+     * Date型をyyyy/mm/ddの文字列型に変換する
+     * @param registeredDate Date
+     * @return yyyy/mm/dd of String
+     */
+    fun dateToString(registeredDate: Date): String {
+        val calendar = Calendar.getInstance().apply {
+            time = registeredDate
+        }
+
+        return "${calendar.get(Calendar.YEAR)}/" +
+                "${calendar.get(Calendar.MONTH) + 1}/" +
+                "${calendar.get(Calendar.DAY_OF_MONTH)}"
+
+    }
+
 }

@@ -7,4 +7,12 @@
     <dimen name="english_when_posted_margin_end">12dp</dimen>
 
     <dimen name="save_sentence_dialog_button_margin_end">8dp</dimen>
+
+    <!-- 英文詳細画面 -->
+    <dimen name="english_sentence_detail_string_size">28sp</dimen>
+    <dimen name="english_sentence_detail_registered_string_size">18sp</dimen>
+    <dimen name="english_sentence_detail_string_margin_start">8dp</dimen>
+    <dimen name="english_sentence_detail_string_margin_top">16dp</dimen>
+    <dimen name="english_sentence_detail_delete_or_edit_icon_margin_top">48dp</dimen>
+
 </resources>
