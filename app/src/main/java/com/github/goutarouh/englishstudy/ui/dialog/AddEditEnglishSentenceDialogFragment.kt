@@ -9,11 +9,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.github.goutarouh.englishstudy.R
+import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.databinding.FragmentAddEditSentenceBinding
 import com.github.goutarouh.englishstudy.viewmodel.AddEditEnglishSentenceViewModel
-import com.github.goutarouh.englishstudy.viewmodel.ShowSentenceViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 /**
  * 英文追加or編集用のダイアログフラグメント
@@ -41,6 +41,11 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupNavigation()
+        setCancelButton()
+        setSaveButton()
+        viewModel.start(args.sentenceId)
+
         dialog?.let { dialog ->
             dialog.window?.let { window ->
                 val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
@@ -53,15 +58,20 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
             isCancelable = false
         }
 
-        viewModel.start(args.sentenceId)
 
         viewModel.item.observe(viewLifecycleOwner) {
             binding.editEnglishSentence.setText(it.englishSentence)
             binding.editJapaneseSentence.setText(it.japaneseSentence)
             binding.editDescription.setText(it.description)
         }
+    }
 
-
+    /**
+     * キャンセルボタンを設定する。
+     *
+     * 英文IDのnullチェックによりどこからダイアログを開いたか判断し、戻る。
+     */
+    private fun setCancelButton() {
         binding.cancelSaveSentence.setOnClickListener {
             val action = if (args.sentenceId == null) {
                 AddEditEnglishSentenceDialogFragmentDirections.actionAddEditEnglishSentenceDialogFragmentToBottomNavigationList()
@@ -72,14 +82,34 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
             }
             findNavController().navigate(action)
         }
+    }
 
+    /**
+     * 保存ボタンを設定する。
+     */
+    private fun setSaveButton() {
         binding.doSaveSentence.setOnClickListener {
-//            viewModel.saveEnglishSentence(
-//                binding.editEnglishSentence.text.toString(),
-//                binding.editJapaneseSentence.text.toString(),
-//                binding.editDescription.text.toString()
-//            )
-//            findNavController().navigate(R.id.action_addEditEnglishSentenceDialogFragment_to_bottom_navigation_list)
+
+            val registeredDate = viewModel.item.value?.registeredDate ?: Date()
+
+            val englishSentence = EnglishSentence(
+                englishSentence = binding.editEnglishSentence.text.toString(),
+                japaneseSentence = binding.editJapaneseSentence.text.toString(),
+                description = binding.editDescription.text.toString(),
+                registeredDate = registeredDate
+            )
+
+            viewModel.saveSentence(englishSentence)
+        }
+    }
+
+    /**
+     * 英文を保存したら画面に戻る
+     */
+    private fun setupNavigation() {
+        viewModel.sentenceUpdate.observe(viewLifecycleOwner) {
+            val action = AddEditEnglishSentenceDialogFragmentDirections.actionAddEditEnglishSentenceDialogFragmentToBottomNavigationList()
+            findNavController().navigate(action)
         }
     }
 }
