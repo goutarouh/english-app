@@ -57,6 +57,13 @@ class EnglishSentenceLocalDataSource internal constructor(
     }
 
     /**
+     * 英文を変種する
+     */
+    override suspend fun updateEnglishSentence(englishSentence: EnglishSentence) = withContext(ioDispatcher) {
+        englishSentenceDao.updateEnglishSentence(englishSentence)
+    }
+
+    /**
      * 英文を削除する。
      */
     override suspend fun deleteEnglishSentences(englishSentence: EnglishSentence) {

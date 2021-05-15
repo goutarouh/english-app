@@ -1,5 +1,6 @@
 package com.github.goutarouh.englishstudy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.github.goutarouh.englishstudy.data.EnglishSentence
 import com.github.goutarouh.englishstudy.data.Result
@@ -30,10 +31,16 @@ class AddEditEnglishSentenceViewModel @Inject constructor(
     }
 
     /**
-     * 英文を保存または編集後にUI側に通知する。
+     * 英文を編集したらViewに通知する。
      */
-    private val _sentenceUpdate = MutableLiveData<Unit>()
-    val sentenceUpdate = _sentenceUpdate
+    private val _sentenceEdit = MutableLiveData<Unit>()
+    val sentenceEdit: LiveData<Unit> = _sentenceEdit
+
+    /**
+     * 英文を追加したらViewに通知する。
+     */
+    private val _sentenceAdd = MutableLiveData<Unit>()
+    val sentenceAdd: LiveData<Unit> = _sentenceAdd
 
     val item: LiveData<EnglishSentence> = _item
 
@@ -48,7 +55,12 @@ class AddEditEnglishSentenceViewModel @Inject constructor(
      * 英文を保存する、保存後にUIに通知する。
      */
     fun saveSentence(englishSentence: EnglishSentence) = viewModelScope.launch {
-        englishSentenceLocalDataSource.saveEnglishSentences(englishSentence)
-        _sentenceUpdate.value = Unit
+        if (_itemId.value == null) {
+            englishSentenceLocalDataSource.saveEnglishSentences(englishSentence)
+            _sentenceAdd.value = Unit
+        } else {
+            englishSentenceLocalDataSource.updateEnglishSentence(englishSentence)
+            _sentenceEdit.value = Unit
+        }
     }
 }

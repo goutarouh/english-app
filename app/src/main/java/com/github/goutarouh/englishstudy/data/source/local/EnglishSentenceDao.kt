@@ -23,6 +23,9 @@ interface EnglishSentenceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEnglishSentences(englishSentence: EnglishSentence)
 
+    @Update
+    suspend fun updateEnglishSentence(englishSentence: EnglishSentence)
+
     @Delete
     suspend fun deleteEnglishSentences(englishSentence: EnglishSentence)
 

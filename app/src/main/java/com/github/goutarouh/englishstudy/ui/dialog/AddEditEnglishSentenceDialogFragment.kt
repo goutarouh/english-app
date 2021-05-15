@@ -1,6 +1,7 @@
 package com.github.goutarouh.englishstudy.ui.dialog
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -97,7 +98,7 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
                 japaneseSentence = binding.editJapaneseSentence.text.toString(),
                 description = binding.editDescription.text.toString(),
                 registeredDate = registeredDate
-            )
+            ).also { it.id  = args.sentenceId!!.toInt() }
 
             viewModel.saveSentence(englishSentence)
         }
@@ -107,8 +108,14 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
      * 英文を保存したら画面に戻る
      */
     private fun setupNavigation() {
-        viewModel.sentenceUpdate.observe(viewLifecycleOwner) {
+
+        viewModel.sentenceAdd.observe(viewLifecycleOwner) {
             val action = AddEditEnglishSentenceDialogFragmentDirections.actionAddEditEnglishSentenceDialogFragmentToBottomNavigationList()
+            findNavController().navigate(action)
+        }
+
+        viewModel.sentenceEdit.observe(viewLifecycleOwner) {
+            val action = AddEditEnglishSentenceDialogFragmentDirections.actionAddEditEnglishSentenceDialogFragmentToShowSentenceDetailFragment(args.sentenceId!!.toInt())
             findNavController().navigate(action)
         }
     }

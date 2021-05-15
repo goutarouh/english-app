@@ -39,24 +39,14 @@ class ShowSentenceDetailFragment: Fragment() {
         }
 
         viewModel.start(args.englishSentenceId)
-
-        // 英文を削除する。
-        binding.deleteSentence.setOnClickListener {
-            // 英文を削除する。
-        }
-
-        binding.editSentence.setOnClickListener {
-            val action = ShowSentenceDetailFragmentDirections
-                .actionShowSentenceDetailFragmentToAddEditEnglishSentenceDialogFragment("${args.englishSentenceId}")
-            findNavController().navigate(action)
-        }
-
-        // 右スワイプで英文一覧に戻る
-        binding.detailFragment.setOnTouchListener { _, event ->
-            backSHowSentencesFragmentGesture.onTouchEvent(event)
-        }
+        setupEditButton()
+        setupDeleteButton()
+        setupNavigation()
     }
 
+    /**
+     * 英文情報をViewに反映させる
+     */
     private fun initScreen(englishSentence: EnglishSentence) {
         binding.registeredEnglish.text = englishSentence.englishSentence
         binding.registeredJapanese.text = englishSentence.japaneseSentence
@@ -64,28 +54,36 @@ class ShowSentenceDetailFragment: Fragment() {
         binding.registeredDate.text = TimeCalculator.dateToString(englishSentence.registeredDate)
     }
 
+    /**
+     * 削除ボタン
+     */
+    private fun setupDeleteButton() {
+        binding.deleteSentence.setOnClickListener {
+            viewModel.item.value?.let {
+                viewModel.delete(it)
+            }
+        }
+    }
 
     /**
-     * 英文一覧のフラグメントに戻るジェスチャー
+     * 編集ボタン
      */
-    private val backSHowSentencesFragmentGesture = GestureDetectorCompat(context, object: GestureDetector.SimpleOnGestureListener() {
-        override fun onDown(e: MotionEvent?): Boolean {
-            return true
+    private fun setupEditButton() {
+        binding.editSentence.setOnClickListener {
+            val action = ShowSentenceDetailFragmentDirections
+                .actionShowSentenceDetailFragmentToAddEditEnglishSentenceDialogFragment("${args.englishSentenceId}")
+            findNavController().navigate(action)
         }
+    }
 
-        override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-            if (e1 == null || e2 == null) return false
-
-            val diffX = e2.x - e1.x
-            val diffY = e2.y - e1.y
-
-            if (abs(diffX) > abs(diffY)) {
-                if (diffX > 0 && velocityX > 100) {
-                    findNavController().navigate(R.id.action_showSentenceDetailFragment_to_bottom_navigation_list)
-                }
-            }
-
-            return super.onFling(e1, e2, velocityX, velocityY)
+    /**
+     * ナビゲーションをセットする
+     */
+    private fun setupNavigation() {
+        viewModel.sentenceDelete.observe(viewLifecycleOwner) {
+            val action = ShowSentenceDetailFragmentDirections.actionShowSentenceDetailFragmentToBottomNavigationList()
+            findNavController().navigate(action)
         }
-    })
+    }
+
 }

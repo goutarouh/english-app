@@ -6,6 +6,7 @@ import com.github.goutarouh.englishstudy.data.Result
 import com.github.goutarouh.englishstudy.data.source.EnglishSentencesDataSource
 import com.github.goutarouh.englishstudy.data.succeeded
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,8 +32,19 @@ class ShowSentenceDetailViewModel @Inject constructor (
 
     val item: LiveData<EnglishSentence> = _item
 
+    private val _sentenceDelete = MutableLiveData<Unit>()
+    val sentenceDelete: LiveData<Unit> = _sentenceDelete
+
     fun start(sentenceId: Int) {
         _itemId.value = sentenceId
+    }
+
+    /**
+     * 英文を削除する
+     */
+    fun delete(englishSentence: EnglishSentence) = viewModelScope.launch {
+        englishSentenceLocalDataSource.deleteEnglishSentences(englishSentence)
+        _sentenceDelete.value = Unit
     }
 
 }
