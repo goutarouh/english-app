@@ -98,7 +98,11 @@ class AddEditEnglishSentenceDialogFragment: DialogFragment() {
                 japaneseSentence = binding.editJapaneseSentence.text.toString(),
                 description = binding.editDescription.text.toString(),
                 registeredDate = registeredDate
-            ).also { it.id  = args.sentenceId!!.toInt() }
+            ).also {
+                args.sentenceId?.run {
+                    it.id = this.toInt()
+                }
+            }
 
             viewModel.saveSentence(englishSentence)
         }
