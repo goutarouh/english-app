@@ -23,7 +23,9 @@
             android:id="@+id/action_bottom_navigation_list_to_showSentenceDetailFragment"
             app:destination="@id/showSentenceDetailFragment"
             app:enterAnim="@anim/nav_slide_from_end"
-            app:exitAnim="@anim/nav_slide_to_start" />
+            app:exitAnim="@anim/nav_slide_to_start"
+            app:popEnterAnim="@anim/nav_slide_from_start"
+            app:popExitAnim="@anim/nav_slide_to_end" />
     </fragment>
 
     <dialog
@@ -63,7 +65,9 @@
         android:label="ShowSentenceDetailFragment" >
         <action
             android:id="@+id/action_showSentenceDetailFragment_to_bottom_navigation_list"
-            app:destination="@id/bottom_navigation_list" />
+            app:destination="@id/bottom_navigation_list"
+            app:enterAnim="@anim/nav_slide_from_start"
+            app:exitAnim="@anim/nav_slide_to_end" />
         <argument
             android:name="englishSentenceId"
             app:argType="integer" />

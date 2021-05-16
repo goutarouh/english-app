@@ -59,9 +59,9 @@ class ShowSentenceDetailFragment: Fragment() {
      */
     private fun setupDeleteButton() {
         binding.deleteSentence.setOnClickListener {
-            viewModel.item.value?.let {
-                viewModel.delete(it)
-            }
+//            viewModel.item.value?.let {
+//                viewModel.delete(it)
+//            }
         }
     }
 
