@@ -21,7 +21,9 @@
             app:destination="@id/addEditEnglishSentenceDialogFragment" />
         <action
             android:id="@+id/action_bottom_navigation_list_to_showSentenceDetailFragment"
-            app:destination="@id/showSentenceDetailFragment" />
+            app:destination="@id/showSentenceDetailFragment"
+            app:enterAnim="@anim/nav_slide_from_end"
+            app:exitAnim="@anim/nav_slide_to_start" />
     </fragment>
 
     <dialog
