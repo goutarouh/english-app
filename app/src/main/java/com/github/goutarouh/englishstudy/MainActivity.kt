@@ -28,7 +28,14 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
         // ナビゲーションで兄弟要素がある場合はsetで指定する。
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.bottom_navigation_check, R.id.bottom_navigation_list))
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.bottom_navigation_check,
+                R.id.checkSentencesFragment,
+                R.id.checkSentencesEndFragment,
+                R.id.bottom_navigation_list
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
