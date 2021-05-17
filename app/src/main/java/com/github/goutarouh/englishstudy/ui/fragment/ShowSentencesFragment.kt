@@ -1,9 +1,8 @@
 package com.github.goutarouh.englishstudy.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +29,7 @@ class ShowSentencesFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentShowSentencesBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -42,6 +42,20 @@ class ShowSentencesFragment: Fragment() {
 
         setupListAdapter()
         setupFab()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_search -> {
+                // todo search
+                true
+            }
+            else -> false
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.show_sentences_fragment_menu, menu)
     }
 
     private fun setupListAdapter() {

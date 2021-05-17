@@ -20,6 +20,9 @@
     <string name="check_next_button">next</string>
     <string name="check_end_button">end</string>
 
+    <!-- show sentences -->
+    <string name="show_sentences_search">search</string>
+
     <!--  detail  -->
     <string name="detail_english">English</string>
     <string name="detail_japanese">Japanese</string>
