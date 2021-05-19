@@ -74,6 +74,13 @@
         <action
             android:id="@+id/action_showSentenceDetailFragment_to_addEditEnglishSentenceDialogFragment"
             app:destination="@id/addEditEnglishSentenceDialogFragment" />
+        <action
+            android:id="@+id/action_showSentenceDetailFragment_to_confirmDeleteDialog"
+            app:destination="@id/confirmDeleteDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/confirmDeleteDialog"
+        android:name="com.github.goutarouh.englishstudy.ui.dialog.ConfirmDeleteDialog"
+        android:label="ConfirmDeleteDialog" />
 
 </navigation>

@@ -59,6 +59,8 @@ class ShowSentenceDetailFragment: Fragment() {
      */
     private fun setupDeleteButton() {
         binding.deleteSentence.setOnClickListener {
+            val action = ShowSentenceDetailFragmentDirections.actionShowSentenceDetailFragmentToConfirmDeleteDialog()
+            findNavController().navigate(action)
 //            viewModel.item.value?.let {
 //                viewModel.delete(it)
 //            }
