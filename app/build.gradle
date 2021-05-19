@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        compose true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,11 +31,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
     }
 
     viewBinding {
@@ -45,6 +50,11 @@ android {
     kapt {
         // hilt追加で追加
         correctErrorTypes true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion = '1.4.32'
+        kotlinCompilerExtensionVersion = "1.0.0-beta07"
     }
 }
 
@@ -91,4 +101,22 @@ dependencies {
     // For instrumentation tests
     androidTestImplementation  'com.google.dagger:hilt-android-testing:2.35.1'
     kaptAndroidTest 'com.google.dagger:hilt-compiler:2.35.1'
+
+    // For Jetpack Compose
+    implementation("androidx.compose.compiler:compiler:1.0.0-beta07")
+    implementation 'androidx.compose.ui:ui:1.0.0-beta07'
+    implementation 'androidx.compose.ui:ui-tooling:1.0.0-beta07'
+    implementation 'androidx.compose.foundation:foundation:1.0.0-beta07'
+    implementation 'androidx.compose.material:material:1.0.0-beta07'
+    implementation 'androidx.compose.material:material-icons-core:1.0.0-beta07'
+    implementation 'androidx.compose.material:material-icons-extended:1.0.0-beta07'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-beta07'
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-beta07'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.0-beta07'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
