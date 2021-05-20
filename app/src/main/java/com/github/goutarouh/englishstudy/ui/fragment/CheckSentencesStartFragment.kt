@@ -1,10 +1,7 @@
 package com.github.goutarouh.englishstudy.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -26,6 +23,7 @@ class CheckSentencesStartFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCheckSentencesStartBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -35,5 +33,19 @@ class CheckSentencesStartFragment: Fragment() {
         binding.checkStart.setOnClickListener {
             findNavController().navigate(R.id.action_bottom_navigation_check_to_checkSentencesFragment)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_check_sentences_speed -> {
+                // todo setting
+                true
+            }
+            else -> false
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.check_sentences_fragment_menu, menu)
     }
 }
