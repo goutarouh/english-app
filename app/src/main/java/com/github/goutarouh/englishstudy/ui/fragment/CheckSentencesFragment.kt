@@ -42,7 +42,7 @@ class CheckSentencesFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launchWhenResumed {
-            viewModel.createCheckFlow(2000, 1000).collect {
+            viewModel.createCheckFlow(4000, 1000).collect {
                 when (it) {
                     is Start -> {
                     }
